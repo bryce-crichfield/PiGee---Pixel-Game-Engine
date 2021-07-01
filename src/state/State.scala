@@ -2,10 +2,12 @@ package org.apollo
 package state
 
 import display.Camera
-import display.ui.{UIComponent, UIContainer}
+import display.ui.UIComponent
 import entity.GameObject
 import input.Input
 import map.GameMap
+
+import org.apollo.display.ui.container.UIContainer
 
 import scala.collection.mutable.ListBuffer
 

@@ -1,7 +1,7 @@
 package org.apollo
 package display.ui
 
-case class Spacing(
+case class UISpacing(
                   top: Int,
                   right: Int,
                   bottom: Int,
@@ -14,15 +14,15 @@ case class Spacing(
 
 }
 
-object Spacing {
+object UISpacing {
 
-    def apply(horizontal: Int, vertical: Int): Spacing = {
+    def apply(horizontal: Int, vertical: Int): UISpacing = {
         assert(horizontal >= 0 && vertical >= 0)
-        Spacing(vertical, horizontal, vertical, horizontal)
+        UISpacing(vertical, horizontal, vertical, horizontal)
     }
 
-    def apply(uniformSpacing: Int): Spacing = {
+    def apply(uniformSpacing: Int): UISpacing = {
         assert(uniformSpacing >= 0)
-        Spacing(uniformSpacing, uniformSpacing, uniformSpacing, uniformSpacing)
+        UISpacing(uniformSpacing, uniformSpacing, uniformSpacing, uniformSpacing)
     }
 }

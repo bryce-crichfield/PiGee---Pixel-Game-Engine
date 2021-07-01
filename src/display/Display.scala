@@ -28,6 +28,8 @@ object Display extends JFrame {
     addKeyListener(Input)
     pack()
 
+
+
     canvas.createBufferStrategy(2)
 
     setLocationRelativeTo(null)

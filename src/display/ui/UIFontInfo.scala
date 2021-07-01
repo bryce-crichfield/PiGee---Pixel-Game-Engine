@@ -3,7 +3,7 @@ package display.ui
 
 import java.awt.{Color, Font}
 
-case class FontInfo(
+case class UIFontInfo(
        fontSize: Int = 24,
        fontStyle: Int = 1,
        fontFamily: String = Font.SANS_SERIF,
