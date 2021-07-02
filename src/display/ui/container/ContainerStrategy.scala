@@ -1,29 +1,31 @@
 package org.apollo
 package display.ui.container
 
+import display.ui.UIDimensionable.UIDimensioner
+import display.ui.bridge.UIBridge
 import physics.{Position, Size}
-
-import org.apollo.display.ui.container.ContainerStrategy.DEFAULT_CONTAINER
 
 // A strategy shouldn't really need to know about a specific container but this works for know
 trait ContainerStrategy {
-  def apply(): UIContainer = DEFAULT_CONTAINER
+  def apply(): UIContainer
   protected def calculateContentSize(container: UIContainer): UIContainer
   protected def repositionChildren(container: UIContainer): UIContainer
+  // Applies the padding
   protected def calculatePosition(container: UIContainer): UIContainer = {
     val newPosition = Position(
       container.padding.left + container.position.intX,
       container.padding.top + container.position.intY)
-    container.copy(position = newPosition)
+    container.setPosition(newPosition)
   }
   protected def calculateSize(container: UIContainer): UIContainer = {
-    // TODO: This odd reference to the container's strategy may break the code
     val newSize = Size(
       container.padding.horizontal + container.strategy.calculateContentSize(container).size.width,
       container.padding.vertical + container.strategy.calculateContentSize(container).size.height)
-    container.copy(size = newSize)
+    container.setSize(newSize)
   }
+  // TODO: This may not be needed
   protected def setStrategy(s: ContainerStrategy, container: UIContainer): UIContainer = {
+    UIBridge.setChangesMade(true)
     UIContainer(strategy = s)
   }
 }
@@ -43,6 +45,7 @@ object ContainerStrategy {
       container.strategy.calculatePosition(container)
     }
     def setStrategy(s: ContainerStrategy): UIContainer = {
+      UIBridge.setChangesMade(true)
       container.copy(strategy = s)
     }
   }

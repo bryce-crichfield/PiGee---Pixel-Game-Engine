@@ -3,21 +3,20 @@ package state
 
 import display.Camera
 import display.ui.UIComponent
+import display.ui.bridge.UIBridge
 import entity.GameObject
 import input.Input
 import map.GameMap
-
-import org.apollo.display.ui.container.UIContainer
 
 import scala.collection.mutable.ListBuffer
 
 
 trait State {
-    //MEMBERS
+
+    // [ SUBSCRIBERS ]
     protected val gameObjects = new ListBuffer[GameObject]()
     protected val gameMap = new GameMap(null)
     protected val nextState: State = null
-    protected val uiContainers = new ListBuffer[UIContainer]()
 
     def update(): Unit = {
         gameObjects.foreach(p => p.update(this))
@@ -37,5 +36,5 @@ trait State {
 
     def getGameObjects: List[GameObject] = gameObjects.toList
 
-    def getUIComponents: List[UIComponent] = uiContainers.toList
+    def getUIComponents: List[UIComponent] = UIBridge.getUIComponents()
 }

@@ -1,8 +1,8 @@
 package org.apollo
 package display.ui.container
 
+import display.ui.UIDimensionable.UIDimensioner
 import physics.{Position, Size}
-import org.apollo.display.ui.UIAdjustable.UIAdjuster
 
 
 case object HorizontalContainer extends ContainerStrategy {
@@ -17,7 +17,7 @@ case object HorizontalContainer extends ContainerStrategy {
     println(container.children.size)
     val tallestChildHeight = container.children.maxBy(_.size.height).size.height
     val newSize = Size(combinedChildrenWidth, tallestChildHeight)
-    container.copy(size = newSize)
+    container.setSize(newSize)
   }
 
   protected override def repositionChildren(container: UIContainer): UIContainer = {

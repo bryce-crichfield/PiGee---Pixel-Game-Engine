@@ -2,6 +2,7 @@ package org.apollo
 package display
 
 import display.ui.UIComponent
+import display.ui.UIDimensionable.UIDimensioner
 import entity.GameObject
 import state.State
 

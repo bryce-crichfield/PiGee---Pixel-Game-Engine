@@ -1,11 +1,11 @@
 package org.apollo
 package map
 
-import org.apollo.core.StateManager
+import core.StateManager
+import display.gfx.SpriteLibrary
 
 import java.awt.Image
 import java.awt.image.BufferedImage
-import display.gfx.SpriteLibrary
 
 case class Tile(image: Image, tileIndex: Int, tileName: String) {
 

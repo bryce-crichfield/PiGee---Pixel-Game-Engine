@@ -2,12 +2,13 @@ package org.apollo
 package state
 
 import display.Camera
-import display.ui.UISpacing
-import display.ui.UIAdjustable.UIAdjuster
-import display.ui.container.ContainerStrategy.ContainerStrategyOperations
+import display.ui.UIDimensionable.UIDimensioner
+import display.ui.UIStyleable.UIStyler
+import display.ui.bridge.UIBridge
 import display.ui.container.{UIContainer, VerticalContainer}
+import display.ui.{UIButton, bridge}
 import entity.Player
-import physics.Size
+import physics.{Position, Size}
 
 import java.awt.Color
 
@@ -16,35 +17,30 @@ class GameState extends State {
     initializeCharacters()
     initializeUI()
 
+
     override def update(): Unit = {
         super.update()
+        UIBridge.update(this)
 
     }
 
     def initializeUI(): Unit = {
 
-//        val VContainer = VerticalContainer()
-//            .setSize(Size(100))
-//            .setPadding(Spacing(20))
-//            .setMargin(Spacing(0))
-//            .setBackgroundColor(Color.GRAY)
-//            .addUIComponent(HorizontalContainer(size = Size(20)))
-//            .addUIComponent(HorizontalContainer(size = Size(20)))
-//            .addUIComponent(HorizontalContainer(size = Size(20)))
-//            .addUIComponent(HorizontalContainer(size = Size(20)))
-//            .addUIComponent(HorizontalContainer(size = Size(20)))
-//            .recalculate
-//
-//        uiContainers.addOne(VContainer)
+        val child = UIContainer()
+          .setSize(Size(25))
+          .setBackgroundColor(Color.RED)
 
-        val verticalContainer = UIContainer()
-          .setStrategy(VerticalContainer)
-          .setSize(Size(100))
-          .setPadding(UISpacing(20))
-          .setMargin(UISpacing(0))
+        val verticalContainer = VerticalContainer()
+          .setPosition(Position(50, 50))
           .setBackgroundColor(Color.GRAY)
+          .addUIComponent(child)
 
-        uiContainers.addOne(verticalContainer)
+        val button = UIButton()
+          .setPosition(Position(250,250))
+
+        UIBridge("VC1", verticalContainer)
+        UIBridge("Button1", button)
+        println(UIBridge("VC1").size)
 
     }
 

@@ -1,6 +1,7 @@
 package org.apollo
 package input
 
+import display.ui.bridge.UIEventHandler.UIMouseEventHandler
 import physics.Position
 
 import java.awt.event._
@@ -57,7 +58,9 @@ object Input extends KeyListener with MouseListener with MouseMotionListener {
     def getMousePosition: Position = mousePosition
 
 
-    override def mouseClicked(e: MouseEvent): Unit = {}
+    override def mouseClicked(e: MouseEvent): Unit = {
+        e.dispatchToUI()
+    }
     override def mouseEntered(e: MouseEvent): Unit = {}
     override def mouseExited(e: MouseEvent): Unit = {}
 }
