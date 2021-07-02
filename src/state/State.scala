@@ -3,11 +3,10 @@ package state
 
 import display.Camera
 import display.ui.bridge.UIBridge
+import display.ui.core.UIComponent
 import entity.GameObject
 import input.Input
 import map.GameMap
-
-import org.apollo.display.ui.core.UIComponent
 
 import scala.collection.mutable.ListBuffer
 

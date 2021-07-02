@@ -3,15 +3,14 @@ package display.ui.components
 
 import display.gfx.ImageUtils
 import display.ui.bridge.UIEvent
+import display.ui.components.UIButton.{DEFAULT_BUTTON_DIMENSION, DEFAULT_BUTTON_STYLE}
+import display.ui.core
+import display.ui.core.{UIComponent, UIDimension, UISpacing, UIStyle}
+import display.ui.typeclasses.UICommandable
 import display.ui.typeclasses.UIDimensionable.UIDimensioner
 import display.ui.typeclasses.UIStyleable.UIStyler
-import display.ui.typeclasses.UICommandable
-import display.ui.{core, typeclasses}
 import physics.{Position, Size}
 import state.State
-
-import org.apollo.display.ui
-import org.apollo.display.ui.core.{UIComponent, UIDimension, UIStyle}
 
 import java.awt.image.BufferedImage
 import java.awt.{Color, Image}

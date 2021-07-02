@@ -2,18 +2,14 @@ package org.apollo
 package display.ui.container
 
 import display.gfx.ImageUtils
-
-import org.apollo.display.ui.typeclasses.UIDimensionable.UIDimensioner
-import org.apollo.display.ui.typeclasses.UIStyleable.UIStyler
-import display.ui.typeclasses
 import display.ui.bridge.UIBridge
 import display.ui.container.ContainerStrategy.ContainerStrategyOperations
 import display.ui.container.UIContainer.{DEFAULT_CONTAINER_DIMENSION, DEFAULT_CONTAINER_STYLE}
+import display.ui.core.{UIComponent, UIDimension, UISpacing, UIStyle}
+import display.ui.typeclasses.UIDimensionable.UIDimensioner
+import display.ui.typeclasses.UIStyleable.UIStyler
 import physics.Size
 import state.State
-
-import org.apollo.display.ui
-import org.apollo.display.ui.core.{UIDimension, UIStyle}
 
 import java.awt.image.BufferedImage
 import java.awt.{Color, Image}

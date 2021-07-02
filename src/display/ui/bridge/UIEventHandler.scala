@@ -1,10 +1,9 @@
 package org.apollo
 package display.ui.bridge
 
-import display.ui.UICommandable.{Command, nullCommand}
+import display.ui.typeclasses.UICommandable
+import display.ui.typeclasses.UICommandable.{Command, nullCommand}
 import physics.Position
-
-import org.apollo.display.ui.typeclasses.UICommandable
 
 import java.awt.event.{InputEvent, MouseEvent}
 

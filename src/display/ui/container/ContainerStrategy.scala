@@ -1,8 +1,8 @@
 package org.apollo
 package display.ui.container
 
-import org.apollo.display.ui.typeclasses.UIDimensionable.UIDimensioner
 import display.ui.bridge.UIBridge
+import display.ui.typeclasses.UIDimensionable.UIDimensioner
 import physics.{Position, Size}
 
 // A strategy shouldn't really need to know about a specific container but this works for know

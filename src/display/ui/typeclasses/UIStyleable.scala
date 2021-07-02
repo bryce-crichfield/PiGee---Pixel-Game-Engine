@@ -1,7 +1,7 @@
 package org.apollo
 package display.ui.typeclasses
 
-import org.apollo.display.ui.core.{UIBorder, UIComponent, UIFontInfo, UIStyle}
+import display.ui.core.{UIBorder, UIComponent, UIFontInfo, UIStyle}
 
 import java.awt.Color
 

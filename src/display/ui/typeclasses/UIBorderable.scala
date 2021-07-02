@@ -1,7 +1,8 @@
 package org.apollo
 package display.ui.typeclasses
 
-import org.apollo.display.ui.core.UIComponent
+import display.ui.core.UIComponent
+import display.ui.typeclasses.UIStyleable.UIStyler
 
 import java.awt.Color
 

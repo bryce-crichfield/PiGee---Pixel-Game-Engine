@@ -1,9 +1,8 @@
 package org.apollo
 package display.ui.typeclasses
 
+import display.ui.core.{UIComponent, UIDimension, UISpacing}
 import physics.{Position, Size}
-
-import org.apollo.display.ui.core.{UIComponent, UIDimension, UISpacing}
 
 
 
