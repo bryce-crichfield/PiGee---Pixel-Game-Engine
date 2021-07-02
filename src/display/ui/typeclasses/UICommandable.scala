@@ -1,5 +1,5 @@
 package org.apollo
-package display.ui
+package display.ui.typeclasses
 
 trait UICommandable {
   // TODO: Allow this to take a position argument

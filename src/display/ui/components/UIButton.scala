@@ -1,13 +1,17 @@
 package org.apollo
-package display.ui
+package display.ui.components
 
 import display.gfx.ImageUtils
-import display.ui.UIButton.{DEFAULT_BUTTON_DIMENSION, DEFAULT_BUTTON_STYLE}
-import display.ui.UIDimensionable.UIDimensioner
-import display.ui.UIStyleable.UIStyler
 import display.ui.bridge.UIEvent
+import display.ui.typeclasses.UIDimensionable.UIDimensioner
+import display.ui.typeclasses.UIStyleable.UIStyler
+import display.ui.typeclasses.UICommandable
+import display.ui.{core, typeclasses}
 import physics.{Position, Size}
 import state.State
+
+import org.apollo.display.ui
+import org.apollo.display.ui.core.{UIComponent, UIDimension, UIStyle}
 
 import java.awt.image.BufferedImage
 import java.awt.{Color, Image}
@@ -46,7 +50,7 @@ case class UIButton(dimension: UIDimension = DEFAULT_BUTTON_DIMENSION,
 }
 object UIButton
 {
-  val DEFAULT_BUTTON_DIMENSION: UIDimension = UIDimension(
+  val DEFAULT_BUTTON_DIMENSION: UIDimension = core.UIDimension(
     size = Size(50),
     margin = UISpacing(5),
     padding = UISpacing(5)

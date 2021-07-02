@@ -1,7 +1,7 @@
 package org.apollo
 package display.ui.container
 
-import display.ui.UIDimensionable.UIDimensioner
+import org.apollo.display.ui.typeclasses.UIDimensionable.UIDimensioner
 import display.ui.bridge.UIBridge
 import physics.{Position, Size}
 

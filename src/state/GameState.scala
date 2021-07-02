@@ -2,13 +2,16 @@ package org.apollo
 package state
 
 import display.Camera
-import display.ui.UIDimensionable.UIDimensioner
-import display.ui.UIStyleable.UIStyler
+
+import org.apollo.display.ui.typeclasses.UIDimensionable.UIDimensioner
+import org.apollo.display.ui.typeclasses.UIStyleable.UIStyler
 import display.ui.bridge.UIBridge
 import display.ui.container.{UIContainer, VerticalContainer}
-import display.ui.{UIButton, bridge}
+import display.ui.bridge
 import entity.Player
 import physics.{Position, Size}
+
+import org.apollo.display.ui.components.UIButton
 
 import java.awt.Color
 

@@ -1,5 +1,5 @@
 package org.apollo
-package display.ui
+package display.ui.core
 
 case class UISpacing(
                   top: Int,

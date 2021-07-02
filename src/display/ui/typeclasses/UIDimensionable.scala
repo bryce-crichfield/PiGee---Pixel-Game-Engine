@@ -1,16 +1,13 @@
 package org.apollo
-package display.ui
+package display.ui.typeclasses
 
 import physics.{Position, Size}
 
+import org.apollo.display.ui.core.{UIComponent, UIDimension, UISpacing}
 
-case class UIDimension(position: Position = Position(0,0),
-                       size: Size = Size(50, 50),
-                       margin: UISpacing = UISpacing(10),
-                       padding: UISpacing = UISpacing(10))
-object UIDimension {
 
-}
+
+
 
 trait UIDimensionable[A <: UIComponent] {
   // [ ACCESSORS ]

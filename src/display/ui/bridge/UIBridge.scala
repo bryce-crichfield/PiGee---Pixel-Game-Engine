@@ -1,10 +1,11 @@
 package org.apollo
 package display.ui.bridge
 
-import display.ui.UIComponent
-import display.ui.UIDimensionable.UIDimensioner
+import org.apollo.display.ui.typeclasses.UIDimensionable.UIDimensioner
 import physics.Position
 import state.State
+
+import org.apollo.display.ui.core.UIComponent
 
 import java.awt.Rectangle
 
