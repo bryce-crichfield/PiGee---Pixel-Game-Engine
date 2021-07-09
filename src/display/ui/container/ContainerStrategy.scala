@@ -1,13 +1,13 @@
 package org.apollo
 package display.ui.container
 
-import display.ui.bridge.UIBridge
+import display.ui.bridge.UISystem
 import display.ui.typeclasses.UIDimensionable.UIDimensioner
 import physics.{Position, Size}
 
 // A strategy shouldn't really need to know about a specific container but this works for know
 trait ContainerStrategy {
-  def apply(): UIContainer
+  def apply(id: String): UIContainer
   protected def calculateContentSize(container: UIContainer): UIContainer
   protected def repositionChildren(container: UIContainer): UIContainer
   // Applies the padding
@@ -22,11 +22,6 @@ trait ContainerStrategy {
       container.padding.horizontal + container.strategy.calculateContentSize(container).size.width,
       container.padding.vertical + container.strategy.calculateContentSize(container).size.height)
     container.setSize(newSize)
-  }
-  // TODO: This may not be needed
-  protected def setStrategy(s: ContainerStrategy, container: UIContainer): UIContainer = {
-    UIBridge.setChangesMade(true)
-    UIContainer(strategy = s)
   }
 }
 object ContainerStrategy {
@@ -45,12 +40,10 @@ object ContainerStrategy {
       container.strategy.calculatePosition(container)
     }
     def setStrategy(s: ContainerStrategy): UIContainer = {
-      UIBridge.setChangesMade(true)
+      UISystem.setChangesMade(true)
       container.copy(strategy = s)
     }
   }
-
-  val DEFAULT_CONTAINER: UIContainer = VerticalContainer.apply()
 }
 
 

@@ -5,7 +5,8 @@ import state.State
 
 import java.awt.Image
 
-case class UIText(text: String = "ERROR: EMPTY TEXT",
+case class UIText(id: String,
+                  text: String = "ERROR: EMPTY TEXT",
                   dimension: UIDimension = UIDimension(),
                   style: UIStyle = UIStyle()
                  ) extends UIComponent {

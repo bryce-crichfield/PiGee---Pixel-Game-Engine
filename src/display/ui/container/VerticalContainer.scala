@@ -6,7 +6,7 @@ import physics.{Position, Size}
 
 case object VerticalContainer extends ContainerStrategy {
 
-  override def apply(): UIContainer = UIContainer(strategy = this)
+  override def apply(id: String): UIContainer = UIContainer(id = id, strategy = this)
 
   protected override def calculateContentSize(container: UIContainer): UIContainer = {
     if (container.children.isEmpty) return container

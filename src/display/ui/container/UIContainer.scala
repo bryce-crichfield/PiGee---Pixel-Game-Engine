@@ -2,7 +2,7 @@ package org.apollo
 package display.ui.container
 
 import display.gfx.ImageUtils
-import display.ui.bridge.UIBridge
+import display.ui.bridge.UISystem
 import display.ui.container.ContainerStrategy.ContainerStrategyOperations
 import display.ui.container.UIContainer.{DEFAULT_CONTAINER_DIMENSION, DEFAULT_CONTAINER_STYLE}
 import display.ui.core.{UIComponent, UIDimension, UISpacing, UIStyle}
@@ -14,7 +14,8 @@ import state.State
 import java.awt.image.BufferedImage
 import java.awt.{Color, Image}
 
-case class UIContainer(dimension: UIDimension = DEFAULT_CONTAINER_DIMENSION,
+case class UIContainer(id: String,
+                       dimension: UIDimension = DEFAULT_CONTAINER_DIMENSION,
                        style: UIStyle = DEFAULT_CONTAINER_STYLE,
                        children: List[UIComponent] = List[UIComponent](),
                        strategy: ContainerStrategy = VerticalContainer)
@@ -58,7 +59,7 @@ case class UIContainer(dimension: UIDimension = DEFAULT_CONTAINER_DIMENSION,
   }
 
   override def remake(dimension: UIDimension, style: UIStyle = style): UIComponent = {
-    UIBridge.setChangesMade(true)
+    UISystem.setChangesMade(true)
     this.copy(dimension = dimension, style = style)
   }
 

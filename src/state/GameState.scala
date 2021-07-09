@@ -2,13 +2,13 @@ package org.apollo
 package state
 
 import display.Camera
-import display.ui.bridge.UIBridge
+import display.ui.bridge.UISystem
 import display.ui.components.UIButton
-import display.ui.container.{UIContainer, VerticalContainer}
+import display.ui.core.UIComponent
 import display.ui.typeclasses.UIDimensionable.UIDimensioner
 import display.ui.typeclasses.UIStyleable.UIStyler
 import entity.Player
-import physics.{Position, Size}
+import physics.Position
 
 import java.awt.Color
 
@@ -20,32 +20,26 @@ class GameState extends State {
 
     override def update(): Unit = {
         super.update()
-        UIBridge.update(this)
+        UISystem.update(this)
 
     }
 
     def initializeUI(): Unit = {
 
-        val child = UIContainer()
-          .setSize(Size(25))
-          .setBackgroundColor(Color.RED)
+        val buttonCommand = (c: UIComponent) => {
+            val newColor = if(c.backgroundColor == Color.RED) Color.BLUE else Color.RED
+            val newButton = c.setBackgroundColor(newColor)
+            UISystem.alterComponent(newButton)
+        }
 
-        val verticalContainer = VerticalContainer()
-          .setPosition(Position(50, 50))
-          .setBackgroundColor(Color.GRAY)
-          .addUIComponent(child)
+        val button = UIButton("button1", buttonCommand)
+          .setPosition(Position(500,500))
 
-        val button = UIButton()
-          .setPosition(Position(250,250))
-
-        UIBridge("VC1", verticalContainer)
-        UIBridge("Button1", button)
-        println(UIBridge("VC1").size)
-
+        UISystem.addComponent(button)
     }
 
     def initializeCharacters(): Unit = {
-        val player = new Player
+        val player = Player
         gameObjects.addOne(player)
         Camera.focusOn(player)
     }

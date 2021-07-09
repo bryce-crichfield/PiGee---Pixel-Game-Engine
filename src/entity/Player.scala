@@ -3,11 +3,23 @@ package entity
 import input.{EntityController, PlayerController}
 import physics.CollisionBox
 
-class Player(override val entityController: EntityController = PlayerController) extends MovingEntity(entityController) {
+case class Player(
+    entityState: EntityState = EntityState(),
+    entitySprite: EntitySprite = EntitySprite(),
+    collisionBox: CollisionBox,
+    parent: Entity,
+    entityController: EntityController = PlayerController
+) extends MovingEntity {
 
 
-    override protected var parent: GameObject = null
+    def remake(entityState: EntityState, entitySprite: EntitySprite, parent: Entity): Entity = {
+        this.copy(
+            entityState = entityState,
+            entitySprite = entitySprite,
+            collisionBox = collisionBox,
+            parent = parent,
+            entityController = entityController
+        )
+    }
 
-
-    override def collisionBox: CollisionBox = ???
 }

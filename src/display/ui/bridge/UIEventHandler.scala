@@ -2,7 +2,7 @@ package org.apollo
 package display.ui.bridge
 
 import display.ui.typeclasses.UICommandable
-import display.ui.typeclasses.UICommandable.{Command, nullCommand}
+import display.ui.typeclasses.UICommandable.nullCommand
 import physics.Position
 
 import java.awt.event.{InputEvent, MouseEvent}
@@ -13,7 +13,7 @@ import java.awt.event.{InputEvent, MouseEvent}
 trait UIEventHandler[A <: InputEvent] {
   def dispatchToUI(): Unit
   protected def receive: Option[UIEvent]
-  protected def determineCommand(uiEvent: Option[UIEvent]): Command
+  protected def applyCommand(uiEvent: Option[UIEvent]): Unit
 }
 
 object UIEventHandler {
@@ -21,22 +21,24 @@ object UIEventHandler {
   implicit class UIMouseEventHandler(event: MouseEvent) extends UIEventHandler[MouseEvent] {
     def dispatchToUI(): Unit = {
       val received = receive
-      val action = determineCommand(received)
-      action.apply()
+      applyCommand(received)
     }
     protected def receive: Option[UIEvent] = {
       val eventPosition = Position(event.getX, event.getY)
-      val queriedComponent = UIBridge.query(eventPosition)
+      val queriedComponent = UISystem.query(eventPosition)
       queriedComponent match {
         case Some(_) => Some(UIEvent(queriedComponent.get, eventPosition))
         case None => None
       }
     }
-    protected def determineCommand(uiEvent: Option[UIEvent]): Command = {
-      if(uiEvent.isEmpty) return nullCommand
-      uiEvent.get.component match {
-        case commandable: UICommandable => commandable.command()
-        case _ => nullCommand
+    protected def applyCommand(uiEvent: Option[UIEvent]): Unit = {
+      if(uiEvent.isEmpty) nullCommand()
+      else {
+        val componentType = uiEvent.get
+        uiEvent.get.component match {
+          case commandable: UICommandable => commandable.applyCommand()
+          case _ => nullCommand()
+        }
       }
     }
   }

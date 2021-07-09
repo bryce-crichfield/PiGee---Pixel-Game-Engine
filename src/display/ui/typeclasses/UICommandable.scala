@@ -1,12 +1,13 @@
 package org.apollo
 package display.ui.typeclasses
 
+import display.ui.core.UIComponent
+
 trait UICommandable {
   // TODO: Allow this to take a position argument
-  def command(): Unit
+  val command: UIComponent => Unit
+  def applyCommand(): Unit
 }
 object UICommandable {
-  type Command = () => Unit
-  val noFoundCommand: () => Unit = () => println("NO APPROPRIATE COMMAND WAS FOUND")
-  val nullCommand: () => Unit = () => ()
+  def nullCommand(): Unit = ()
 }

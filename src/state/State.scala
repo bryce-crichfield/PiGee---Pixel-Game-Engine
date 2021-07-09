@@ -2,9 +2,9 @@ package org.apollo
 package state
 
 import display.Camera
-import display.ui.bridge.UIBridge
+import display.ui.bridge.UISystem
 import display.ui.core.UIComponent
-import entity.GameObject
+import entity.Entity
 import input.Input
 import map.GameMap
 
@@ -14,7 +14,7 @@ import scala.collection.mutable.ListBuffer
 trait State {
 
     // [ SUBSCRIBERS ]
-    protected val gameObjects = new ListBuffer[GameObject]()
+    protected val gameObjects = new ListBuffer[Entity]()
     protected val gameMap = new GameMap(null)
     protected val nextState: State = null
 
@@ -34,7 +34,7 @@ trait State {
 
     def getGameMap: GameMap = gameMap
 
-    def getGameObjects: List[GameObject] = gameObjects.toList
+    def getGameObjects: List[Entity] = gameObjects.toList
 
-    def getUIComponents: List[UIComponent] = UIBridge.getUIComponents()
+    def getUIComponents: List[UIComponent] = UISystem.getUIComponents()
 }

@@ -1,41 +1,39 @@
 package org.apollo
 package entity
 
-import display.gfx.{AnimationManager, ImageUtils, SpriteSet}
+import display.gfx.{ImageUtils, SpriteSet}
 import input.EntityController
-import physics.{Direction, Motion, South, Vector}
 import state.State
 
 import java.awt.Image
 
-abstract class MovingEntity(val entityController: EntityController) extends GameObject {
+trait MovingEntity extends Entity {
 
-    protected var motion: Motion = Motion(1, Vector(0,0))
-    val image = ImageUtils.loadImage("resources/sprites/units/light.png")
-    val spriteSet = new SpriteSet()
-    spriteSet.addSheet("light", image.get)
-    protected val animationManager: AnimationManager = new AnimationManager(spriteSet)
-    protected var direction: Direction = South
-    protected var entityAction: EntityAction = Standing
+    // TODO: Make this immutable
+    protected var entityState: EntityState
+    protected val entityController: EntityController
+    protected val stateManager = new EntityStateManager(entityState, entityController)
+    protected val animationManager: EntityAnimationManager = initializeAnimationManager()
 
     override def update(state: State): Unit = {
-        motion = motion.update(entityController)
-        position = position.applyMotion(motion)
-        direction = direction(motion)
-        updateEntityAction
-        animationManager.update(direction, entityAction)
-
+        entityState = stateManager.calculateUpdate()
+        animationManager.calculateCurrentFrame(entityState)
     }
 
     override def sprite: Image = {
         animationManager.getSprite
     }
 
-    private def updateEntityAction: Unit = {
-        if(entityController.isRequestingAttack) entityAction = Slashing
-        else if(entityController.isRequestingCast) entityAction = Casting
-        else if(motion.isMoving) entityAction = Walking
-        else entityAction = Standing
+    protected def initializeAnimationManager(): EntityAnimationManager = {
+        // TODO: In the future, many sheets can be loaded based on character inventory
+        val spriteSheet = ImageUtils.loadImage("resources/sprites/units/light.png")
+        val spriteSet = new SpriteSet()
+        spriteSet.addSheet("light", spriteSheet.get)
+        new EntityAnimationManager(spriteSet)
     }
+
+}
+object MovingEntity {
+
 }
 

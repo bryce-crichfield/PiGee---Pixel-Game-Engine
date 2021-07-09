@@ -3,7 +3,7 @@ package display
 
 import display.ui.core.UIComponent
 import display.ui.typeclasses.UIDimensionable.UIDimensioner
-import entity.GameObject
+import entity.Entity
 import state.State
 
 import java.awt.Graphics
@@ -15,7 +15,7 @@ object Renderer {
         renderUI(state.getUIComponents, graphics)
     }
 
-    private def renderGameObjects(gameObjects: List[GameObject], graphics: Graphics): Unit = {
+    private def renderGameObjects(gameObjects: List[Entity], graphics: Graphics): Unit = {
         gameObjects.foreach(obj => {
             graphics.drawImage(
                 obj.sprite,

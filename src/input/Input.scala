@@ -44,8 +44,9 @@ object Input extends KeyListener with MouseListener with MouseMotionListener {
     }
 
     //Used to ensure sync with game updates
-    def clearMouseClick: Unit = mouseIsClicked = false
-
+    def clearMouseClick(): Unit = {
+        mouseIsClicked = false
+    }
 
     override def mouseDragged(e: MouseEvent): Unit = {
         mousePosition = Position(e.getX, e.getY)

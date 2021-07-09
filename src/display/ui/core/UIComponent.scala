@@ -7,6 +7,7 @@ import java.awt.Image
 
 /** super class of all UI elements */
 trait UIComponent {
+  val id: String
   val dimension: UIDimension
   val style: UIStyle
 

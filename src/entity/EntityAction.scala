@@ -1,36 +1,65 @@
 package org.apollo
 package entity
 
+import display.gfx.spritesheet.{LPCSpriteInfo, LPCSubSheet}
+import physics.{East, North, South, West}
+
 trait EntityAction {
-    //From ULPC Animation Sheet
-    val startIndex: Int
-    val frameCount: Int
+    val lpcSubsheet: LPCSubSheet
 }
 case object Standing extends EntityAction {
-    override val startIndex: Int = 0
-    override val frameCount: Int = 1
+    val lpcSubsheet: LPCSubSheet = LPCSubSheet(
+        North -> LPCSpriteInfo(1, 0, 64),
+        West -> LPCSpriteInfo(1, 1, 64),
+        South -> LPCSpriteInfo(1, 2, 64),
+        East -> LPCSpriteInfo(1, 3, 64)
+    )
 }
 case object Casting extends EntityAction {
-    override val startIndex: Int = 0
-    override val frameCount: Int = 7
+    val lpcSubsheet: LPCSubSheet = LPCSubSheet(
+        North -> LPCSpriteInfo(7, 0, 64),
+        West -> LPCSpriteInfo(7, 1, 64),
+        South -> LPCSpriteInfo(7, 2, 64),
+        East -> LPCSpriteInfo(7, 3, 64)
+    )
 }
 case object Thrusting extends EntityAction {
-    override val startIndex: Int = 4
-    override val frameCount: Int = 8
+    val lpcSubsheet: LPCSubSheet = LPCSubSheet(
+        North -> LPCSpriteInfo(8, 4, 64),
+        West -> LPCSpriteInfo(8, 5, 64),
+        South -> LPCSpriteInfo(8, 6, 64),
+        East -> LPCSpriteInfo(8, 7, 64)
+    )
 }
 case object Walking extends EntityAction {
-    override val startIndex: Int = 8
-    override val frameCount: Int = 9
+    val lpcSubsheet: LPCSubSheet = LPCSubSheet(
+        North -> LPCSpriteInfo(9, 8, 64),
+        West -> LPCSpriteInfo(9, 9, 64),
+        South -> LPCSpriteInfo(9, 10, 64),
+        East -> LPCSpriteInfo(9, 11, 64)
+    )
 }
 case object Slashing extends EntityAction {
-    override val startIndex: Int = 12
-    override val frameCount: Int = 6
+    val lpcSubsheet: LPCSubSheet = LPCSubSheet(
+        North -> LPCSpriteInfo(6, 12, 64),
+        West -> LPCSpriteInfo(6, 13, 64),
+        South -> LPCSpriteInfo(6, 14, 64),
+        East -> LPCSpriteInfo(6, 15, 64)
+    )
 }
 case object Drawing extends EntityAction {
-    override val startIndex: Int = 16
-    override val frameCount: Int = 13
+    val lpcSubsheet: LPCSubSheet = LPCSubSheet(
+        North -> LPCSpriteInfo(13, 16, 64),
+        West -> LPCSpriteInfo(13, 17, 64),
+        South -> LPCSpriteInfo(13, 18, 64),
+        East -> LPCSpriteInfo(13, 19, 64)
+    )
 }
-case object Prone extends EntityAction {
-    override val startIndex: Int = 20
-    override val frameCount: Int = 6
+case object Dead extends EntityAction {
+    val lpcSubsheet: LPCSubSheet = LPCSubSheet(
+        North -> LPCSpriteInfo(6, 20, 64),
+        West -> LPCSpriteInfo(6, 20, 64),
+        South -> LPCSpriteInfo(6, 20, 64),
+        East -> LPCSpriteInfo(6, 20, 64)
+    )
 }

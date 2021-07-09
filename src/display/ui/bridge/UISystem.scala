@@ -9,7 +9,7 @@ import state.State
 import java.awt.Rectangle
 
 /** This object allows the immutability of the UISystem to be "bridged" with the mutability of the state system */
-object UIBridge {
+object UISystem {
 
   private var changeMade: Boolean = false
   private var uiComponents: Map[String, UIComponent] = Map[String, UIComponent]()
@@ -18,8 +18,12 @@ object UIBridge {
     uiComponents(identifier)
   }
 
-  def apply(identifier: String, component: UIComponent): Unit = {
-    uiComponents = uiComponents + (identifier -> component)
+  def alterComponent(component: UIComponent): Unit = {
+    uiComponents = uiComponents.updated(component.id, component)
+  }
+
+  def addComponent(component: UIComponent): Unit = {
+    uiComponents = uiComponents + (component.id -> component)
   }
 
   def getUIComponents(): List[UIComponent] = {
@@ -48,6 +52,7 @@ object UIBridge {
     })
   }
   // TODO: Figure out how to make this work
+
 
 
 }

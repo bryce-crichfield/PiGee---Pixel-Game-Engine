@@ -2,7 +2,7 @@ package org.apollo
 package display
 
 import core.StateManager
-import entity.GameObject
+import entity.Entity
 import physics.{Position, Size}
 import state.State
 
@@ -13,7 +13,7 @@ object Camera {
     private val SAFETY_SPACE = 2 * StateManager.SPRITE_SIZE
     private var position = Position(0,0)
     private var windowSize = Display.windowSize
-    private var objectWithFocus: Option[GameObject] = None
+    private var objectWithFocus: Option[Entity] = None
     private var viewBounds: Rectangle = null
     calculateViewBounds
 
@@ -26,7 +26,7 @@ object Camera {
         )
     }
 
-    def focusOn(obj: GameObject): Unit = {
+    def focusOn(obj: Entity): Unit = {
         this.objectWithFocus = Some(obj)
     }
 
@@ -52,7 +52,7 @@ object Camera {
         }
     }
 
-    def isInView(obj: GameObject): Boolean = {
+    def isInView(obj: Entity): Boolean = {
         viewBounds.intersects(
             obj.getPosition.intX,
             obj.getPosition.intY,
