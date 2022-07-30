@@ -1,4 +1,4 @@
-# PersonalGameEngine
+# Pixel Game Engine
 
 This is a side project that I had been developing for about 2 months over the summer of 2021.  
 
